@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author Jcervant23
  */
 public class Principal extends javax.swing.JFrame {
-
+Fraccionario f1, f2, f3 = null;
     /**
      * Creates new form Principal
      */
@@ -147,7 +147,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
         int op, n1, n2, n3, d1, d2, d3;
-        Fraccionario f1, f2, f3 = null;
+        
         int sw = 1;
         txtNumerador3.setText("");
         txtDenominador3.setText("");
@@ -251,17 +251,21 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdMixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMixActionPerformed
         // TODO add your handling code here:
-        int Pe, Mixnum, Mixden, n3, d3, sw =1;
-        
+        int n3, d3;
+        Fraccionario f;
+
         n3 = Integer.parseInt(txtNumerador3.getText());
         d3 = Integer.parseInt(txtDenominador3.getText());
-        Pe = n3 / d3;
-        Mixden = d3;
-        Mixnum = n3 % d3;
-        txtPe.setText("" + Pe);
-        txtNumerador3.setText("" + Mixnum);
-        txtDenominador3.setText("" + Mixden);
-        cmdMix.setEnabled(false);
+        try {
+            f3 = new Fraccionario(n3, d3);
+            f = f3.Conversion();
+            txtPe.setText("" + f3.getParte_entera());
+            txtNumerador3.setText("" + f3.getNumerador());
+            txtDenominador3.setText("" + f3.getDenominador());
+            cmdMix.setEnabled(false);
+        } catch (DenominadorCeroException ex) {
+            Helper.mensaje(null, "No puede digitar cero de denominador", "Error", 2);
+        }
     }//GEN-LAST:event_cmdMixActionPerformed
 
     /**

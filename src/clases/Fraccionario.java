@@ -12,6 +12,7 @@ package clases;
 public class Fraccionario {
    private int numerador;
    private int denominador;
+   private int Parte_entera;
    
    public Fraccionario(int numerador, int denominador) throws DenominadorCeroException{
        this.numerador=numerador;
@@ -20,6 +21,13 @@ public class Fraccionario {
            throw new DenominadorCeroException();
        }
    }
+
+    public Fraccionario(int numerador, int denominador, int Pae) {
+        this.numerador = numerador;
+        this.denominador = denominador;
+        this.Parte_entera = Pae;
+    }
+   
 
     public int getNumerador() {
         return numerador;
@@ -36,6 +44,15 @@ public class Fraccionario {
     public void setDenominador(int denominador) {
         this.denominador = denominador;
     }
+
+    public int getParte_entera() {
+        return Parte_entera;
+    }
+
+    public void setParte_entera(int Parte_entera) {
+        this.Parte_entera = Parte_entera;
+    }
+    
     
     public Fraccionario suma(Fraccionario f2) throws DenominadorCeroException{
         int num, den;
@@ -69,6 +86,17 @@ public class Fraccionario {
      num = this.numerador * f2.denominador;
      den = this.denominador * f2.numerador;
      f = new Fraccionario(num,den);
+     return f;
+     }
+     public Fraccionario Conversion() {
+     int num, den, Pe;
+     Fraccionario f;
+     Pe = this.numerador / this.denominador;
+     this.Parte_entera = Pe;
+     den = this.denominador;
+     num = this.numerador % this.denominador;
+     this.numerador = num;
+     f = new Fraccionario(num, den, Pe);
      return f;
      }
 }
